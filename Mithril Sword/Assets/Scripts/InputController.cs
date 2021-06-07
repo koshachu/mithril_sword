@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class InputController : MonoBehaviour
 {
-    public GameObject Target;
-    
+    public Transform TargetTransform;
+    public NavMeshAgent PlayerAgent;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,9 @@ public class InputController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                Target.transform.position = hit.point;
+                TargetTransform.transform.position = hit.point;
+                PlayerAgent.destination = hit.point;
+                   
             }
         }
         
