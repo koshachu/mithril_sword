@@ -23,9 +23,15 @@ public class InputController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                TargetTransform.transform.position = hit.point;
-                PlayerAgent.destination = hit.point;
-                   
+                if (hit.collider.gameObject.name == "Enemy")
+                {
+                    PlayerAgent.destination = hit.collider.transform.position;
+                }
+                else
+                {
+                    TargetTransform.transform.position = hit.point;
+                    PlayerAgent.destination = hit.point;
+                }   
             }
         }
         
